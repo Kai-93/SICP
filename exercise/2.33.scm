@@ -34,21 +34,5 @@
 
 (append (list 1 2 3) (list 4 5 6))
 
-
-;;; p68-length.scm
-; (define (length items)
-;     (if (null? items)
-;         0
-;         (+ 1 
-;            (length (cdr items)))))
-
-(define (length sequence)
-  (accumulate
-    (lambda (x y) (+ 1 y)) ; operation 的传参数1是当前值, 传参数2是后续累计值
-    0 ; 初始值
-    sequence
-  )
-)
-
 (length (list 1 2 3))
 

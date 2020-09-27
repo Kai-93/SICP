@@ -1,9 +1,6 @@
 ; Define a procedure last-pair that returns the list that contains only the last element of a given (nonempty) list
 
-(define (length items)
-     (if (null? items)
-         0
-         (+ 1 (length (cdr items)))))
+(load "utils.scm")
 
 (define (list-ref items n)
       (if (= n 0)

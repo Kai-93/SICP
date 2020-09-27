@@ -21,7 +21,6 @@
 (define (prime-sum? pair)
   (prime? (+ (car pair) (cadr pair))))
 
-
 (define (prime-sum-pairs n)
   (map make-pair-sum (filter prime-sum? (unique-pairs n))))
 

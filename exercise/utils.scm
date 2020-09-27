@@ -36,3 +36,16 @@
           (op ; 使用 操作符 处理 当前值 和 后续累计值
             (car sequence)
             (accumulate op initial (cdr sequence)))))
+
+; (define (length items)
+;      (if (null? items) 0
+;          (+ 1 (length (cdr items)))))
+
+
+(define (length sequence)
+  (accumulate
+    (lambda (x y) (+ 1 y)) ; operation 的传参数1是当前值, 传参数2是后续累计值
+    0 ; 初始值
+    sequence
+  )
+)
