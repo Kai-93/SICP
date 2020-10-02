@@ -42,14 +42,10 @@
               ((and (number? a1) (number? a2)) (+ a1 a2))
               (else (list '+ a1 a2))))
 
-(define (make-exponentiation exp var)
-        (cond ((= (exponent exp) 0) 1)
-              ((= (exponent exp) 1) (base exp))
-              (else (let (($base (base exp))
-                         ($exponent (exponent exp)))
-                         (* (deriv $base var)
-                            (** $base (- $exponent 1))
-                            $exponent)))))
+(define (make-exponentiation b e)
+        (cond ((= e 0) 1)
+              ((= e) 1) b)
+              (else (list '** b e)))
 
 (define (deriv exp var)
         (cond 
@@ -66,8 +62,11 @@
                         (make-product (deriv (multiplier exp) var)
                                       (multiplicand exp))))
           ((exponentiation? exp)
-              (make-exponentiation exp))
+              (let ((b (base exp)) (e (exponent exp)))
+                   (make-product e (make-product (make-exponentiation b (- e 1))
+                                                 (deriv base var)))))
           (else
               (error "unknown expression type - DERIV" exp))))
 
-(deriv '(** x 0) 'x)
+
+(deriv '(+ x (** x 2)) 'x)
