@@ -1,9 +1,10 @@
 
 
 (define (leaf? object) (eq? (car object) 'leaf))
-(define (symbol-leaf x) (cadr x))
-(define (weight-leaf x) (caddr x))
 
+(define (symbol-leaf x) (cadr x))
+
+(define (weight-leaf x) (caddr x))
 
 (define (left-branch tree) (car tree))
 
@@ -51,9 +52,9 @@
                       (make-code-tree (make-leaf 'D 1)
                                       (make-leaf 'C 1)))))
 
-(define sample-message '(0 1 1 0 0 1 0 1 0 1 1 1 0))
+; (define sample-message '(0 1 1 0 0 1 0 1 0 1 1 1 0))
 
-(define message (decode sample-message sample-tree))
+; (define message (decode sample-message sample-tree))
 
 ; message
 
