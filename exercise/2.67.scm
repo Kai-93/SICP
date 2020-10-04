@@ -53,4 +53,10 @@
 
 (define sample-message '(0 1 1 0 0 1 0 1 0 1 1 1 0))
 
-(decode sample-message sample-tree)
+(define message (decode sample-message sample-tree))
+
+; message
+
+; (car message)
+
+; (cdr message)
