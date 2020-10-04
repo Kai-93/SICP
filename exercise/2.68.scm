@@ -21,4 +21,4 @@
                  (encode (cdr message) tree))))
 
 
-(encode message sample-tree)
+; (encode message sample-tree)
