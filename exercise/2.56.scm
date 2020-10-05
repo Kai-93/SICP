@@ -22,7 +22,7 @@
         (and (variable? v1) (variable? v2) (eq? v1 v2)))
   
 
-(define (exponentiation? p)
+(define (exponentiation? x)
         (and (pair? x) (eq? (car x) '**)))
 
 (define (base p) (cadr p))
@@ -42,10 +42,10 @@
               ((and (number? a1) (number? a2)) (+ a1 a2))
               (else (list '+ a1 a2))))
 
-; (define (make-exponentiation base e)
-;         (cond ((= e 0) 1)
-;               ((= e) 1) base)
-;               (else (list '** base e)))
+(define (make-exponentiation b n)
+        (cond ((= n 0) 1)
+              ((= n 1) b)
+              (else (list '** b n))))
 
 (define (deriv exp var)
         (cond 
@@ -61,12 +61,14 @@
                                       (deriv (multiplicand exp) var))
                         (make-product (deriv (multiplier exp) var)
                                       (multiplicand exp))))
-        ;   ((exponentiation? exp)
-        ;       (let ((b (base exp)) (e (exponent exp)))
-        ;            (make-product e (make-product (make-exponentiation b (- e 1))
-        ;                                          (deriv base var)))))
+          ((exponentiation? exp)
+              (let ((b (base exp)) (e (exponent exp)))
+                   (make-product e (make-product 
+                                        (make-exponentiation b (- e 1))
+                                        (deriv b var)))))
           (else
               (error "unknown expression type - DERIV" exp))))
 
 
-(deriv '(+ x (* x 2)) 'x)
+; (deriv '(+ x (* x 2)) 'x)
+(deriv '(** x 3) 'x)
