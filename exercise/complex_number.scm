@@ -11,6 +11,23 @@
 (define (all_keys)
   (hash-table/key-list *op-table*))
 
+;带标志数据的辅助函数
+(define (attach-tag type-tag contents)
+  (if (number? contents) contents
+    (cons type-tag contents)))
+
+; 获取 tag
+(define (type-tag datum)
+  (cond ((number? datum) 'scheme-number)
+    ((pair? datum) (car datum))
+    (else (error "Bad tagged datum -- TYPE-TAG " datum))))
+
+; 获取 content
+(define (contents datum)
+  (cond ((number? datum) datum)
+    ((pair? datum) (cdr datum))
+    (else (error "Bad tagged datum -- TYPE-TAG " datum))))
+
 ;复数的四种基本运算
 (define (add-complex z1 z2)
   (make-from-real-imag (+ (real-part z1) (real-part z2))
@@ -27,20 +44,6 @@
 (define (div-complex z1 z2)
   (make-from-mag-ang (/ (magnitude z1) (magnitude z2))
                      (- (angle z1) (angle z2))))
-
-;带标志数据的辅助函数
-(define (attach-tag type-tag contents)
-  (cons type-tag contents))
-; 获取 tag
-(define (type-tag datum)
-  (if (pair? datum)
-    (car datum)
-    (error "Bad tagged datum -- TYPE-TAG " datum)))
-; 获取 complex number
-(define (contents datum)
-  (if (pair? datum)
-    (cdr datum)
-    (error "Bad tagged datum -- TYPE-TAG " datum)))
 
 
 ; 直角坐标形式的复数表示
