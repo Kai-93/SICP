@@ -114,6 +114,3 @@
 (define (make-from-mag-ang r a)
   ((get 'make-from-mag-ang 'polar) r a))
 
-
-
-(make-from-real-imag 1 2)
