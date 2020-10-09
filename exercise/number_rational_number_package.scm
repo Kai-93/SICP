@@ -37,6 +37,8 @@
       (lambda (x y)
               (and (= (numer x) (numer y))
                    (= (denom x) (denom y)))))
+  (put '=zero? '(rational)
+      (lambda (x) (= (numer x) 0)))
   'done)
 
 (install-rational-package)

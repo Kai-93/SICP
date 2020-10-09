@@ -14,18 +14,13 @@
           (lambda (x) (tag x)))
      (put 'equ? '(scheme-number scheme-number)
           (lambda (x y) (= x y)))
+     (put '=zero? '(scheme-number)
+          (lambda (x) (= x 0)))
   'done)
 
 (install-scheme-number-package)
 
 (define (make-scheme-number n) ((get 'make 'scheme-number) n))
 
-; 复数
-; (equ? (make-complex-from-real-imag 1 2)
-;             (make-complex-from-real-imag 1 2))
-; (equ? (make-complex-from-real-imag 1 2)
-;             (make-complex-from-real-imag 10086 10086))
-; (equ? (make-complex-from-mag-ang 1 2)
-;             (make-complex-from-mag-ang 1 2))
-; (equ? (make-complex-from-mag-ang 1 2)
-;             (make-complex-from-mag-ang 10086 10086))
+
+

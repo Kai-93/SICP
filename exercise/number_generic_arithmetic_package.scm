@@ -37,3 +37,5 @@
 
 ; 判断两个数值是否相等
 (define (equ? x y) (apply-generic 'equ? x y))
+; 是否等于0
+(define (=zero? x) (apply-generic '=zero? x))
