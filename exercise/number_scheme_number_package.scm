@@ -1,7 +1,7 @@
 ; scheme 数值
 (define (install-scheme-number-package)
      (define (tag x)
-       (attach-tag 'scheme-number x))
+          (attach-tag 'scheme-number x))
      (put 'add '(scheme-number scheme-number)
           (lambda (x y) (tag (+ x y))))
      (put 'sub '(scheme-number scheme-number)
@@ -16,6 +16,12 @@
           (lambda (x y) (= x y)))
      (put '=zero? '(scheme-number)
           (lambda (x) (= x 0)))
+     ; 2.81.scm时添加
+     (put 'exp '(scheme-number scheme-number)
+          (lambda (x y) (tag (expt x y)))) ; using primitive expt
+     ; 2.82.scm时添加
+     (put 'raise '(scheme-number) 
+          (lambda (x) (make-rational x 1)))
   'done)
 
 (install-scheme-number-package)
