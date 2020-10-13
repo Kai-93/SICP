@@ -39,6 +39,8 @@
                    (= (denom x) (denom y)))))
   (put '=zero? '(rational)
       (lambda (x) (= (numer x) 0)))
+  (put 'raise '(rational) 
+      (lambda (x) (make-complex-from-real-imag (/ (numer x) (denom x)) 0)))
   'done)
 
 (install-rational-package)
