@@ -1,0 +1,22 @@
+(define (make-account initial origin-password)
+        (define (deposit amount)
+                      (begin (set! initial (+ initial amount))
+                            initial))
+        (define (withdraw amount)
+                (if (> initial amount)
+                    (begin (set! initial (- initial amount))
+                        initial)
+                    (display "Insufficient funds")))
+        (define (dispatch input-password mode)
+                (cond ((eq? input-password origin-password) 
+                        (cond ((eq? mode 'deposit) deposit)
+                          ((eq? mode 'withdraw) withdraw)
+                          (else (display "No such action"))))
+                      (else (display "Incorrect password"))))
+        dispatch)
+
+(define acc (make-account 100 'secret-password))
+
+((acc 'secret-password 'withdraw) 40)
+
+((acc 'some-other-password 'deposit) 50) 
