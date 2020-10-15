@@ -15,8 +15,10 @@
                       (else (display "Incorrect password"))))
         dispatch)
 
-(define acc (make-account 100 'secret-password))
+(define peter-acc (make-account 100 'secret-password))
 
-((acc 'secret-password 'withdraw) 40)
+((peter-acc 'secret-password 'withdraw) 40)
 
-((acc 'some-other-password 'deposit) 50) 
+((peter-acc 'secret-password 'deposit) 40)
+
+; ((peter-acc 'some-other-password 'deposit) 50) 
