@@ -30,3 +30,35 @@ queue))))
             (else
              (set-front-ptr! queue (cdr (front-ptr queue)))
              queue)))
+
+
+
+; 插入
+((q 'insert-queue!) 'a)
+;Value 11: (a)
+
+((q 'insert-queue!) 'b)
+;Value 11: (a b)
+
+
+; 删除
+(q 'delete-queue!)                        
+
+;Value 12: (b)
+
+(q 'delete-queue!)
+
+;Value: ()
+
+; 空队列
+(q 'empty-queue?)                         
+
+;Value: #t
+
+((q 'insert-queue!) 'not-empty-now)
+
+;Value 14: (not-empty-now)
+
+(q 'empty-queue?)
+
+;Value: #f
