@@ -1,5 +1,6 @@
 (define (make-table same-key?)
     (let ((local-table (list '*table*)))
+        ; 3.24.scm
         (define (assoc key subtable)
                 (cond ((null? subtable) #f)
                       ((same-key? key (caar subtable)) (car subtable))
