@@ -64,6 +64,7 @@
         ; 将 procedure 加入 action-procedures 中, 并执行
         (define (accept-action-procedure! proc)
                 (set! action-procedures (cons proc action-procedures))
+                ; 将 action-procedure 加入到 agenda 中, 在下一次 propagate 时执行
                 (proc))
 
         (define (dispatch m)
