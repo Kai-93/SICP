@@ -7,6 +7,5 @@
 (delete-queue! q1)
 (delete-queue! q1)
 
-(define (print-queue queue) (car queue))
 
 (print-queue q1)
