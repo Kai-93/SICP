@@ -1,4 +1,4 @@
-(load "digital_simulator.scm")
+(load "digital_circuit_simulator.scm")
 
 (define input-1 (make-wire))              ; 创建三条线路
 

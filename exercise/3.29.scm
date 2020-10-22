@@ -1,4 +1,4 @@
-(load "digital_simulator.scm")
+(load "digital_circuit_simulator.scm")
 
 (define (or-gate a1 a2 a3)
   (let ((x (make-wire))
