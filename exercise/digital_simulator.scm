@@ -36,25 +36,32 @@
     (add-action! a1 and-action-procedure)
     (add-action! a2 and-action-procedure)
     'ok)
-; 或门
+; 或门, 注册修改事件
+; 调用时, 创建 action-procedure, 其作用是根据输入来输入
+; 并将其加入到输入 wire 的 action-procedures 中
+; 当输入 wire 的是修改时, 会将方法放入 agenda 中, 延迟调用
 (define (or-gate input-1 input-2 output)
     (define (or-action-procedure)
         (let ((new-value (logical-or (get-signal input-1) (get-signal input-2))))
               ; 将任务加至 agenda 中
               (after-delay or-gate-delay 
                            (lambda () (set-signal! output new-value)))))
+    ; 将 action 加入到 wire(input-1) 中 action-procedures 中, 并执行
     (add-action! input-1 or-action-procedure)
+    ; 将 action 加入到 wire(input-2) 中 action-procedures 中, 并执行
     (add-action! input-2 or-action-procedure)
     'ok)
 
 ; 创建 wire
 (define (make-wire)
   (let ((signal-value 0) (action-procedures '()))
+        ; 设置 wire 的 signal-value, 并执行 action-procedures 中的 每一个 procedure
         (define (set-my-signal! new-value)
                 (if (not (= signal-value new-value))
                          (begin (set! signal-value new-value)
                                 (call-each action-procedures))
                     'done))
+        ; 将 procedure 加入 action-procedures 中, 并执行
         (define (accept-action-procedure! proc)
                 (set! action-procedures (cons proc action-procedures))
                 (proc))

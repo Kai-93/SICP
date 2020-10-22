@@ -1,13 +1,13 @@
 (load "digital_simulator.scm")
 
-(define (or-gate a1 a2 output)
-  (let ((x make-wire)
-        (y make-wire)
-        (z make-wire))
+(define (or-gate a1 a2 a3)
+  (let ((x (make-wire))
+        (y (make-wire))
+        (z (make-wire)))
         (inverter a1 x)
         (inverter a2 y)
         (and-gate x y z)
-        (inverter z))
+        (inverter z a3))
   'ok)
 
 
