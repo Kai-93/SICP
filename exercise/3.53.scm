@@ -1,0 +1,3 @@
+;     n: 1 2 3 4 ... 
+; value: 1 2 4 8 ... 2^(n-1)
+(define s (cons-stream 1 (add-streams s s)))

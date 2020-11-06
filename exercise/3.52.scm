@@ -39,3 +39,5 @@
 
 ; 136
 (stream-ref y 0)
+
+(display-stream z)
