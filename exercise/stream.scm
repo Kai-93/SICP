@@ -63,3 +63,18 @@
 (define (stream-enumerate-interval low high)
       (if (> low high) the-empty-stream
           (cons-stream low (stream-enumerate-interval (+ low 1) high))))
+
+; 整数无穷流, 从 n 开始
+(define (integers-starting-from n)
+        (cons-stream n (integers-starting-from (+ n 1))))
+
+; 正整数
+(define integers (integers-starting-from 1))
+
+; 两个 stream 中的元素逐个相乘
+(define (mul-streams stream-1 stream-2)
+        ; 方法一
+        (stream-map * stream-1 stream-2))
+        ; 方法二
+        ; (cons-stream (* (stream-car stream-1) (stream-car stream-2))
+        ;              (mul-streams (stream-cdr stream-1) (stream-cdr stream-2))))
