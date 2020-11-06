@@ -8,8 +8,6 @@
 
 (define x (stream-map show _x))
 
-(trace stream-ref)
-
 (stream-ref x 5)
 
 (stream-ref x 7)                                            
