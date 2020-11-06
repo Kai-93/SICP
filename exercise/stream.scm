@@ -78,3 +78,4 @@
         ; 方法二
         ; (cons-stream (* (stream-car stream-1) (stream-car stream-2))
         ;              (mul-streams (stream-cdr stream-1) (stream-cdr stream-2))))
+
