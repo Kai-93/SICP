@@ -71,6 +71,12 @@
 ; 正整数
 (define integers (integers-starting-from 1))
 
+; 两个 stream 中的元素逐个相加
+(define (add-streams stream-1 stream-2)
+        ; 方法一
+        (stream-map + stream-1 stream-2))
+
+
 ; 两个 stream 中的元素逐个相乘
 (define (mul-streams stream-1 stream-2)
         ; 方法一
