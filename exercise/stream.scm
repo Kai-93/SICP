@@ -113,3 +113,7 @@
                 (cons-stream 1.0 (stream-map (lambda (guess) (sqrt-improve guess x))
                                              guesses)))
          guesses)
+
+(define (partial-sums s)
+        (cons-stream (stream-car s) (add-streams (stream-cdr s)
+                                                 (partial-sums s))))
