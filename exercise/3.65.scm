@@ -6,4 +6,8 @@
 
 (define ln2-stream (partial-sums (ln2 1)))
 
-(display-stream ln2-stream)
+(display-top10-line ln2-stream)
+
+(display-top10-line (euler-transform ln2-stream))
+
+(display-top10-line (accelerated-sequence euler-transform ln2-stream))

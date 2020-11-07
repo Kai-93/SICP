@@ -117,3 +117,29 @@
 (define (partial-sums s)
         (cons-stream (stream-car s) (add-streams (stream-cdr s)
                                                  (partial-sums s))))
+
+(define (euler-transform s)
+  (let ((s0 (stream-ref s 0))
+        (s1 (stream-ref s 1))
+        (s2 (stream-ref s 2)))
+    (cons-stream (- s2 (/ (square (- s2 s1))
+                          (+ s0 (* -2 s1) s2)))
+                 (euler-transform (stream-cdr s)))))
+
+
+(define (make-tableau transform s)
+        (cons-stream s (make-tableau transform
+                                     (transform s))))
+
+(define (accelerated-sequence transform s)
+  (stream-map stream-car (make-tableau transform s)))
+
+;  辅助过程，用于展示一个 stream 中的元素
+(define (range first last)
+  (if (>= first last)
+      '()
+      (cons first (range (+ first 1) last))))
+
+(define (display-top10-line s)
+  (newline)
+  (for-each (lambda (x) (display-line (stream-ref s x))) (range 0 10)))
