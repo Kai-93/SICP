@@ -16,4 +16,4 @@
 
 ; (delay <exp>) simply as (lambda () <exp>)
 ; without using the optimization provided by the memo-proc procedure
-; O(n^2)
+; O(n^2)??

@@ -103,3 +103,13 @@
 ; 新stream 等于 原stream 中的每个元素 * factor
 (define (scale-stream stream factor)
         (stream-map (lambda (x) (* x factor)) stream))
+
+(define (sqrt-improve guess x)
+        (define (average x y) (/ (+ x y) 2))
+        (average guess (/ x guess)))
+
+(define (sqrt-stream x)
+        (define guesses
+                (cons-stream 1.0 (stream-map (lambda (guess) (sqrt-improve guess x))
+                                             guesses)))
+         guesses)
