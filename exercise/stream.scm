@@ -61,8 +61,8 @@
 
 ; 生成从 low 到 high 的stream
 (define (stream-enumerate-interval low high)
-      (if (> low high) the-empty-stream
-          (cons-stream low (stream-enumerate-interval (+ low 1) high))))
+        (if (> low high) the-empty-stream
+            (cons-stream low (stream-enumerate-interval (+ low 1) high))))
 
 ; 整数无穷流, 从 n 开始
 (define (integers-starting-from n)
@@ -79,3 +79,21 @@
         ; (cons-stream (* (stream-car stream-1) (stream-car stream-2))
         ;              (mul-streams (stream-cdr stream-1) (stream-cdr stream-2))))
 
+; 3.56 时添加
+; 按升序合并两个升序的正整数 stream
+(define (merge s1 s2)
+        (cond ((stream-null? s1) s2)
+              ((stream-null? s2) s1)
+              (else (let ((s1car (stream-car s1))
+                          (s2car (stream-car s2)))
+                          (cond ((< s1car s2car) (cons-stream s1car
+                                                              (merge (stream-cdr s1) s2)))
+                                ((> s1car s2car) (cons-stream s2car
+                                                              (merge s1 (stream-cdr s2))))
+                                (else (cons-stream s1car
+                                                  (merge (stream-cdr s1)
+                                                        (stream-cdr s2)))))))))
+
+; 新stream 等于 原stream 中的每个元素 * factor
+(define (scale-stream stream factor)
+        (stream-map (lambda (x) (* x factor)) stream))
