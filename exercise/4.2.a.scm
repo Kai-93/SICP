@@ -56,7 +56,6 @@
             (cons (eval (first-operand exps) env)
                   (list-of-values (rest-operands exps) env))))
 
-
 ; 在 eval 下面代码时
 ; 将先判断 (application? '(define x 3)) => (pair? '(define x 3)), 其值为 #t
 ; 而后 (eval (operator exp) env) => (eval (car exp) env) => (eval define env) 
