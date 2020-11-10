@@ -1,12 +1,17 @@
 ; 操作表
 (define *op-table* (make-hash-table))
 
+; 举例 op = 'add, type = '(complex complex), 表示是两个复数相加
+; put 即将 op + type 对应的 procedure 存入 table 中
+; get 即将 op + type 对应的 procedure 从 table 取出
+
 (define (put op type proc)
   (hash-table/put! *op-table* (list op type) proc))
 
 (define (get op type)
   (hash-table/get *op-table* (list op type) #f))
 
+; 获取 table 中保存的所有的 key
 (define (all_keys)
   (hash-table/key-list *op-table*))
 
@@ -16,10 +21,12 @@
     (cons type-tag contents)))
 
 ; 获取 tag
-(define (type-tag datum)
-  (cond ((number? datum) 'scheme-number)
-    ((pair? datum) (car datum))
-    (else (error "Bad tagged datum -- TYPE-TAG " datum))))
+(define (type-tags datum)
+        ; 数字直接返回 type
+        (cond ((number? datum) 'scheme-number)
+              ; 若是 pair, 使用 car 返回
+              ((pair? datum) (car datum))
+              (else (error "Bad tagged datum -- TYPE-TAG " datum))))
 
 ; 获取 content
 (define (contents datum)
@@ -29,7 +36,7 @@
 
 ; 通过 op args 定位 hash-table 中的方法
 ; (define (apply-generic op . args)
-;   (let ((type-tags (map type-tag args)))
+;   (let ((type-tags (map type-tags args)))
 ;     (let ((proc (get op type-tags)))
 ;       (if proc
 ;         (apply proc (map contents args))

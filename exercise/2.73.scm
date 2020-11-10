@@ -1,5 +1,5 @@
 (load "2.56.scm")
-(load "complex_number.scm")
+(load "number_complex_number_package.scm")
 
 (define (operator exp) (car exp))
 
