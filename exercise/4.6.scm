@@ -27,6 +27,8 @@
                       (get-body-of-let-exp exp))
         (get-values-of-let-exp exp)))
 
+(define (make-let variables-and-values body)
+        (list 'let variables-and-values body))
 
 ; eval 的实现
 (define (eval exp env)
