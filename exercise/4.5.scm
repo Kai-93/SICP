@@ -43,7 +43,7 @@
                               (let ((parameter (apply (get-predicate-of-additional-clause-of-cond first))))
                                     (make-if ((parameter)
                                              (apply ((get-action-of-additional-clause-of-cond first) parameter))
-                                             #f)))
+                                             (expand-clauses rest))))
                           ; 派生 cond 的 clauses
                           (make-if (cond-predicate first)
                                   (sequence->exp (cond-actions first))
