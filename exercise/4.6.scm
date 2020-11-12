@@ -17,7 +17,7 @@
 ; 获取 let 表达式中的变量名对应的表达式
 (define (get-values-of-let-exp exp)
         (let ((pairs cadr exp))
-             (map cadr pairs))))
+             (map cadr pairs)))
 ; 获取 let 表达式中的函数体
 (define (get-body-of-let-exp exp) (cddr exp))
 
