@@ -1,0 +1,10 @@
+; 接触绑定
+(define (make-unbound! var env)
+        (let ((frame (first-frame env)))
+              (define (scan vars vals)
+                      (cond ((null? vars) 'ok)
+                            ((eq? var (car vars)) (set-car! vars (cdr vars))
+                                                  (set-car! vals (cdr vals)))
+                            (else (scan (cdr vars) (cdr vals)))))
+              (scan (frame-variables frame)
+                    (frame-values frame))))
