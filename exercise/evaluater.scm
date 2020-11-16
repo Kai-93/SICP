@@ -191,6 +191,24 @@
                       (list-of-values (operands exp) env)))
            (else (error "Unknown expression type - EVAL" exp))))
 
+; 解析表达式, 没有求值逻辑
+; 进行语法分析, 返回 procedure
+(define (analyze exp)
+        (cond ((self-evaluating? exp)
+               (analyze-self-evaluating exp))
+               ((quoted? exp) (analyze-quoted exp))
+               ((variable? exp) (analyze-variable exp))
+               ((assignment? exp) (analyze-assignment exp))
+               ((definition? exp) (analyze-definition exp))
+               ((if? exp) (analyze-if exp))
+               ((lambda? exp) (analyze-lambda exp))
+               ((begin? exp) (analyze-sequence
+                              (begin-actions exp)))
+               ((cond? exp) (analyze (cond->if exp)))
+               ((application? exp) (analyze-application exp))
+               (else (error "Unknown expression type - ANALYZE" exp))))
+
+
 
 ; apply 的实现
 (define (apply procedure arguments)
