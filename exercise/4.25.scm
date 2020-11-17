@@ -12,4 +12,4 @@
 ; 因为调用 unless 的时候, 作为参数的 (factorial (- n 1)) 将会一直被求值
 
 ; normal-order
-; (factorial (- n 1)) 在需要求值时求值, 结果是正常的
+; (factorial (- n 1)) 在需要用到时求值, 结果是正常的
